@@ -1,4 +1,5 @@
 Django==1.10.3
+django-admin-bootstrapped-plus==0.1.1.2
 django-admin-bootstrapped==2.5.7
 django-markdown==0.8.4
 django-pagedown==0.1.1
