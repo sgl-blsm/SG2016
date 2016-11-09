@@ -19,14 +19,15 @@ from django.conf.urls.static import static
 
 from django.contrib import admin
 
+from SG2016.apps.blog.views import ArticleListView
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'blog/', include('SG2016.apps.blog.urls', namespace='blog', app_name='blog')),
-    url(r'account/', include('SG2016.apps.account.urls', namespace='account', app_name='account')),
+      url(r'^$', ArticleListView.as_view(), name='index'),
+      url(r'^admin/', admin.site.urls),
+      url(r'blog/', include('SG2016.apps.blog.urls', namespace='blog', app_name='blog')),
+      url(r'account/', include('SG2016.apps.account.urls', namespace='account', app_name='account')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 # if settings.DEBUG:
 #     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
