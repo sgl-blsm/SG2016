@@ -1,0 +1,146 @@
+{% load staticfiles %}
+{% load blog_extras %}
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+  <!-- 网站小图标icon-->
+  <link rel="icon" href="{% static 'img/favicon.png' %}">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>知北的个人博客</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/nav_search.css' %}" rel="stylesheet">
+  <link href="{% static 'css/blog.css' %}" rel="stylesheet">
+
+  {% block custom_styles %}
+  {% endblock %}
+
+</head>
+
+<body>
+ <div class="wrapper">
+
+  <div class="navbar navbar-findcond navbar-fixed-top" role="navigation">
+    <div class="container">
+
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+		</button>
+          <a class="navbar-brand {% if nbar == 'home' %}active{% endif %}" href="{% url 'blog:index' %}">首页      </a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbar">
+        <ul class="nav navbar-nav navbar-right">
+{#          <li class="{% if nbar == 'archives' %}active{% endif %}">#}
+{#            <a href="{% url 'archives' %}">ARCHIVES</a>#}
+{#          </li>#}
+{#          <li class="{% if nbar == 'works' %}active{% endif %}">#}
+{#            <a href="{% url 'works' %}">WORKS</a>#}
+{#          </li>#}
+          <li class="{% if nbar == 'me' %}active{% endif %}">
+            <a href="{% url 'account:about_author' %}">关于作者</a>
+          </li>
+{#          <!--<li class="dropdown">#}
+{#            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">LAB#}
+{#              <span class="caret"></span>#}
+{#            </a>#}
+{#            <ul class="dropdown-menu" role="menu">#}
+{#              <li>#}
+{#                <a href="{% url 'book' %}">BOOK</a>#}
+{#              </li>#}
+{#              <li>#}
+{#                <a href="{% url 'activity' %}">Activity</a>#}
+{#              </li>#}
+{#              <li>#}
+{#                <a href="#">C</a>#}
+{#              </li>#}
+{#              <li>#}
+{#                <a href="#exit">D</a>#}
+{#              </li>#}
+{#            </ul>#}
+{#          </li>-->#}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    {% block breadcrumb_nav %}
+    {% endblock breadcrumb_nav %}
+  </div>
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-sm-8 blog-main">
+        {% block main %}
+        {% endblock %}
+      </div>
+
+      <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+
+        <div class="sidebar-module">
+          <h4>Search</h4>
+          <form action="{% url 'blog:search_article_list' %}" method="get">
+            <input type="text" name="search_content">
+            <input type="submit" value="GO!">
+          </form>
+        </div>
+
+        <div class="sidebar-module">
+          <h4>文章分类</h4>
+          <ol class="list-unstyled">
+            {% get_categories %}
+          </ol>
+        </div>
+               
+        <div class="sidebar-module">
+          <h4>标签云</h4>
+          <p class="tag-cloud">
+            {% get_tags %}
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="push"></div>
+ </div>
+
+  <div class="blog-footer">
+      <span>友情链接：</span>
+{#      <a href="#">back to top</a>#}
+  </div>
+
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/jquery.githubRepoWidget.min.js' %}"></script>
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <script src="{% static 'js/jquery.bootstrap-autohidingnavbar.min.js' %}"></script>
+  <script>
+      $("div.navbar-fixed-top").autoHidingNavbar();
+  </script>
+</body>
+
+</html>
+

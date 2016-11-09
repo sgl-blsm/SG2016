@@ -1,0 +1,10 @@
+
+<p>
+    {% for category in categories %}
+        <li>
+            <a href="{{ category.get_absolute_url }}">
+                {{ category.name }}({{ category.get_article_num }})
+            </a>
+        </li>
+    {% endfor %}
+</p>

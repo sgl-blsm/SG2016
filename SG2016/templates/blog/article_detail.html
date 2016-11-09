@@ -1,0 +1,67 @@
+{% extends "blog/base.html" %}
+
+{% load staticfiles %}
+{% load django_markdown django_markdown_static %}
+{#{% load replace %}#}
+
+{% block custom_styles %}
+  <link href="{% static 'css/django_markdown_preview.css' %}" rel="stylesheet">
+{% endblock %}
+
+
+{% block breadcrumb_nav %}
+<div class="scp-breadcrumb">
+    <ul class="breadcrumb">
+        <li><a href="{% url 'blog:index' %}">首页</a></li>
+        <li class="active"><i>{{ article.title }}</i></li>
+    </ul>
+</div>
+{% endblock breadcrumb_nav %}
+
+
+{% block main %}
+    <h2 class="blog-post-title">{{article.title}}</h2>
+    <p class="blog-post-meta">
+
+      <span class="glyphicon glyphicon-calendar icon"></span>
+      <span class="icon-text">
+        {{ article.create_time | date:"Y/m/d H:i:s" }}
+      </span>
+
+      <span class="glyphicon glyphicon-user icon"></span>
+      <span class="icon-text">
+        <a href="{{ article.author.get_absolute_url }}">
+          <span>{{ article.author.pen_name }}</span>
+        </a>
+      </span>
+
+    </p>
+
+    <p>
+        {{ article.content | markdown | safe }}
+    </p>
+
+
+
+
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="{{ article.slug }}" data-title="{{ article.title }}"
+     data-url="{{ article.get_absolute_url }}"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"xus"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0]
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+</script>
+<!-- 多说公共JS代码 end -->
+<!-- 多说评论框 end -->
+
+
+{% endblock %}

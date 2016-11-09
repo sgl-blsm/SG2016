@@ -1,0 +1,8 @@
+.idea
+*.pyc
+*.out
+*.bak
+*.iml
+.DS_Store
+SG2016/apps/*/migrations
+media

@@ -1,0 +1,42 @@
+{% extends "blog/base.html" %}
+
+{% load staticfiles %}
+{% load django_markdown %}
+
+
+{% block breadcrumb_nav %}
+<div class="scp-breadcrumb">
+    <ul class="breadcrumb">
+{#        <li><a href="{% url 'hoauthor' %}"><i>Hoauthor</i></a></li>#}
+{#        <li class="active"><i>author</i></li>#}
+    </ul>
+</div>
+{% endblock breadcrumb_nav %}
+
+
+{% block main %}
+
+    <img src="{{ author.avatar.url }}" class="img-responsive" alt="Responsive image" style="height: 500px;">
+
+    <p><i><b>笔名: </b>{{ author.pen_name }}</i></p>
+    <p><i><b>Email: </b>{{ author.email }}</i></p>
+    <p><i><b>QQ: </b>{{ author.qq }}</i></p>
+    <p><i><b>微博: </b>{{ author.weibo }}</i></p>
+    <p><i><b>GitHub: </b>{{ author.github }}</i></p>
+{#    {% if author.is_show_email %}#}
+{#      <p><i><b>Email: </b>{{ author.email }}</i></p>#}
+{#    {% endif %}#}
+{#    #}
+{#    {% if author.is_show_github %}#}
+{#      <p><i><b>GitHub: </b>{{ author.github }}</i></p>#}
+{#    {% endif %}#}
+{#    #}
+{#    {% if author.is_show_weibo %}#}
+{#      <p><i><b>Weibo: </b>{{ author.weibo }}</i></p>#}
+{#    {% endif %}#}
+{#    #}
+{#    {% if author.is_show_idea %}#}
+{#      <p><i><b>Idea: </b>{{ author.idea }}</i></p>#}
+{#    {% endif %}#}
+
+{% endblock main %}

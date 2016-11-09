@@ -1,0 +1,9 @@
+{% load staticfiles %}
+
+<link href="{% static 'css/tag_cloud.css' %}" rel="stylesheet" >
+
+{% for tag in tags %}
+  <a href="{{ tag.get_absolute_url }}" title="{{ tag.get_article_num }}篇文章" >
+      {{ tag.name }}
+  </a>
+{% endfor %}

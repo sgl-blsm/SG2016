@@ -1,0 +1,68 @@
+{% load staticfiles %}
+{% load django_markdown %}
+
+{% block custom_styles %}
+    <link href="{% static 'css/django_markdown_preview.css' %}" rel="stylesheet">
+{% endblock %}
+
+
+<div class="blog-post">
+
+    <h2 class="blog-post-title">
+        <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+    </h2>
+
+    <p class="blog-post-meta">
+        <span class="glyphicon glyphicon-calendar icon"></span>
+        <span class="icon-text">{{ article.create_time | date:"Y/m/d H:i:s" }}</span>
+
+        <span class="glyphicon glyphicon-user icon"></span>
+        <span class="icon-text">
+            <a href="{{ article.author.get_absolute_url }}">
+              <span>{{ article.author.pen_name }}</span>
+            </a>
+      </span>
+    </p>
+
+    <p>
+        {{ article.summary | markdown | safe }}
+    </p>
+
+{#    <p>#}
+{#        <div class="readmore">#}
+{#            <a href="{{ article.get_absolute_url }}">#}
+{#                <span class="glyphicon glyphicon-plus"></span> more#}
+{#            </a>#}
+{#        </div>#}
+{#    </p>#}
+
+    <p class="blog-post-meta">
+        <span class="glyphicon glyphicon-folder-open icon"></span>
+        <span class="icon-text">
+          <a class="tag-hover" href="{{ article.category.get_absolute_url }}">
+              <i>{{ article.category }}</i>
+          </a>
+        </span>
+
+        <br>
+
+        <span class="glyphicon glyphicon-tags icon"></span>
+        <span class="icon-text">
+        {% for tag in article.tags.all %}
+            <a class="tag-hover" href="{{ tag.get_absolute_url }}">
+                <i>{{ tag.name }}</i>
+            </a>
+            {% if not forloop.last %},{% endif %}
+        {% endfor %}
+      </span>
+    </p>
+
+    <hr class="line">
+
+</div>
+
+
+
+
+
+
