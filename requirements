@@ -1,7 +1,0 @@
-Django==1.8.16
-django-admin-bootstrapped==2.5.7
-django-markdown==0.8.4
-django-pagedown==0.1.1
-Markdown==2.6.7
-Pillow==3.4.2
-pytz==2016.7
