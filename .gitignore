@@ -6,3 +6,4 @@
 .DS_Store
 SG2016/apps/*/migrations
 media
+db.sqlite3
