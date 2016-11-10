@@ -6,4 +6,6 @@
 .DS_Store
 SG2016/apps/*/migrations
 media
+whoosh_index
 db.sqlite3
+

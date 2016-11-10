@@ -1,0 +1,45 @@
+{% extends "blog/base.html" %}
+
+{% load django_markdown %}
+
+
+{% block breadcrumb_nav %}
+<div class="scp-breadcrumb">
+    <ul class="breadcrumb">
+        <li class="active"><i>Home</i></li>
+    </ul>
+</div>
+{% endblock breadcrumb_nav %}
+
+
+{% block main %}
+
+
+{% for item in page.object_list %}
+    {% include "blog/article_info.html" with article=item.object %}
+{% empty %}
+      <p>未找到查询文章！！！</p>
+{% endfor %}
+
+{% if page.has_previous or page.has_next %}
+    <div>
+        {% if page.has_previous %}
+            <a href="?q={{ query }}&page={{ page.previous_page_number }}">
+        {% endif %}
+        «Previous
+
+        {% if page.has_previous %}</a>{% endif %}
+        |
+
+        {% if page.has_next %}
+            <a href="?q={{ query }}&page={{ page.next_page_number }}">
+        {% endif %}
+        Next »
+
+        {% if page.has_next %}</a>{% endif %}
+    </div>
+{% endif %}
+
+{#{% include "blog/article_pagination.html" with is_query_result=False page=page %}#}
+
+{% endblock main %}

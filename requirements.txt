@@ -1,8 +1,11 @@
 Django==1.10.3
-django-admin-bootstrapped-plus==0.1.1.2
 django-admin-bootstrapped==2.5.7
+django-admin-bootstrapped-plus==0.1.1.2
+django-haystack==2.5.1
 django-markdown==0.8.4
 django-pagedown==0.1.1
+jieba==0.38
 Markdown==2.6.7
 Pillow==3.4.2
 pytz==2016.7
+Whoosh==2.7.4

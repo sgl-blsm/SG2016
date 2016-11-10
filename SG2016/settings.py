@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'SG2016.apps.account',
+    'haystack',
     'SG2016.apps.blog',
     'pagedown',
     'django_markdown',
@@ -136,4 +137,17 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # 使用自定义User用户
 AUTH_USER_MODEL = 'account.User'
+
+
+# 对Haystack进行配置
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'SG2016.apps.blog.whoosh_cn_backend.WhooshEngine',
+        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+    },
+}
+HAYSTACK_SIGNAL_PROCESSOR = "haystack.signals.RealtimeSignalProcessor"
+HAYSTACK_SEARCH_RESULTS_PER_PAGE = 1
+
+
 

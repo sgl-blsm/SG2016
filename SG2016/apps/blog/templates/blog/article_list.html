@@ -16,6 +16,8 @@
 
 {% for article in article_list %}
     {% include "blog/article_info.html" with article=article %}
+{% empty %}
+      <p>未找到文章！！！</p>
 {% endfor %}
 
 {% include "blog/article_pagination.html" with is_query_result=False page=article_list %}

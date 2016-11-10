@@ -48,7 +48,7 @@ class SearchArticleListView(ListView):
 
     def get_queryset(self):
         search_content = self.request.GET.get('search_content')
-        article_list = Article.objects.filter(status='p',title__contains=search_content)
+        article_list = Article.objects.filter(status='p', title__contains=search_content)
         return article_list
 
 

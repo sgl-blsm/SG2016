@@ -98,10 +98,14 @@
 
         <div class="sidebar-module">
           <h4>Search</h4>
-          <form action="{% url 'blog:search_article_list' %}" method="get">
-            <input type="text" name="search_content">
-            <input type="submit" value="GO!">
-          </form>
+{#          <form action="{% url 'blog:search_article_list' %}" method="get">#}
+{#            <input type="text" name="search_content">#}
+{#            <input type="submit" value="GO!">#}
+{#          </form>#}
+            <form action="{% url 'blog:haystack_search' %}" method="get">
+                <input type="text" name="q">
+                <input type="submit" value="GO!">
+            </form>
         </div>
 
         <div class="sidebar-module">
