@@ -1,8 +1,11 @@
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, ArchiveIndexView
 from .models import Article, Category, Tag
 from .utils import article_paginator
 from collections import OrderedDict
+
+import logging
+logger = logging.getLogger('blog.views')
 
 
 class ArticleListView(ListView):
@@ -56,20 +59,18 @@ def article_archive(request):
     article_list = Article.objects.filter(status='p')
     year_article_dict = OrderedDict()
 
-    for article in article_list:
-        year = article.create_time.year
-        if year not in year_article_dict.keys():
-            year_article_dict[year] = list()
-            year_article_dict[year].append(article)
-        else:
-            year_article_dict[year].append(article)
-    return render_to_response('blog/article_archive.html', {'year_article_dict': year_article_dict})
+    try:
+        for article in article_list:
+            year = article.create_time.year
+            if year not in year_article_dict.keys():
+                year_article_dict[year] = list()
+                year_article_dict[year].append(article)
+            else:
+                year_article_dict[year].append(article)
+    except Exception as e:
+        logger.error(e)
+    return render(request, 'blog/article_archive.html', {'year_article_dict': year_article_dict})
 
-
-
-
-
-# 
 
 
 

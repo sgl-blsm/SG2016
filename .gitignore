@@ -7,5 +7,7 @@
 SG2016/apps/*/migrations
 media
 whoosh_index
+SG2016/log
 db.sqlite3
+
 
